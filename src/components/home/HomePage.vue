@@ -1,11 +1,20 @@
 <template>
-   <div class="main d-flex p-5 bg-warning" style="min-height: 100vh; width: 100vw;">
+   <div class="main d-flex p-5 " style="background-color: hsl(13, 31%, 94%); min-height: 100vh; width: 100vw;">
 
-      <div id="products" class="container m-3 w-75 bg-danger-subtle " style="min-height: 100vh; ">
+      <div id="products" class="container m-3 w-75  " style="min-height: 100vh; ">
          <h3 class="col-12 mb-4 ps-5">Desserts</h3>
-         <div class="list d-flex w-100 gap-3 m-4 row row-cols-3 justify-content-start align-items-start">
+         <div class="list d-flex w-100 gap-2 m-4 row row-cols-3 justify-content-start align-items-start">
 
             <div class="card order-1 border-0 bg-transparent" style="height: 28rem;width: 30%; ">
+               <img src="..." class="card-img-top " alt="...">
+               <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                  <h5 class="card-title">Card title</h5>
+                  <a href="#" class="btn btn-primary" style="background-color: hsl(20, 50%, 98%);">Go somewhere</a>
+                  <p></p>
+               </div>
+            </div>
+            <!-- <div class="card order-1 border-0 bg-transparent" style="height: 28rem;width: 30%; ">
                <img src="..." class="card-img-top " alt="...">
                <div class="card-body">
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
@@ -13,18 +22,18 @@
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                   <p></p>
                </div>
-            </div>
+            </div> -->
             <!-- <div class="card col order-2 bg-danger " style="height: 28rem;width: 30%; "><p>product2</p></div>
             <div class="card col order-3 " style="height: 28rem;width: 30%; "><p>product3</p></div>
             <div class="card col order-4 bg-primary" style="height: 28rem;width: 30%; "><p>product3</p></div>
             <div class="card col order-5 bg-secondary" style="height: 28rem;width: 30%; "><p>product3</p></div> -->
          </div>
       </div>
-      <div id="Emptycart" class="w-25 p-4 m-3 rounded-4 algin-items-center" style="min-height: 100px; background-color: aqua;position: sticky; top: 2rem; ">
+      <div id="Emptycart" class="w-25 p-4 m-3 rounded-4 algin-items-center" style="min-height: 100px;color:hsl(14, 86%, 42%); background-color: hsl(20, 50%, 98%);position: sticky; top: 2rem; ">
          <h2>your Cart(0)</h2>
          <img class="cartImg d-flex align-self-center m-auto w-100" src="./../../../assets/images/illustration-empty-cart.svg" alt="">
       </div>
-      <div id="Fullcart" class="w-25 p-4 m-3 rounded-4 algin-items-center" style="min-height: 100px; background-color: aqua;position: sticky; top: 2rem; ">
+      <div id="Fullcart" class="w-25 p-4 m-3 rounded-4 algin-items-center" style="min-height: 100px;color:hsl(14, 86%, 42%); background-color: hsl(20, 50%, 98%);position: sticky; top: 2rem; ">
          <h2>your Cart(0)</h2>
          <img class="cartImg d-flex align-self-center m-auto w-100" src="./../../../assets/images/illustration-empty-cart.svg" alt="">
       </div>
@@ -52,11 +61,19 @@
       // let dessertdiscrip = document.querySelector('.card-text');
       for (let index = 0; index < data.length; index++) {
          let link = document.createElement('router-link');
-         link.setAttribute(':to', `/product/$` );
-         link.style = "text-decoration: none; color: black;height: 100%;width: 30%;";
+         // let link = document.createElement('a');
+         // link.setAttribute(':to', `/product/$` );
+         link.className = "dessert col text-center text-decoration-none d-block";
+         link.style = " color: black;height: 100% ;width: 30%";
+         // link.setAttribute(':to', `"{name:'product', params:{productCategory:'${data[index].category}', productID:${data[index].id}}}"`);
+         // link.setAttribute('@click', "window.scrollTo(0,0)");
+         // link.setAttribute('to', `"/product/${data[index].category}/${data[index].id}"`);
+         // link.setAttribute('to', "/product/" + data[index].category + "/" + data[index].id);
+         link.setAttribute('to', "/product/" + data[index].category + "/" + data[index].id);
+         // link.setAttribute('href', `/product/${data[index].category}/${data[index].id}`);
          let card = document.createElement('div');
          card.className = "card order-1 border-0 bg-transparent";
-         card.style = "height: 28rem;width: 100%;";
+         card.style = "height: 28rem;width: 75%;";
          let img = document.createElement('img');
          img.className = "card-img-top rounded-4";
          img.setAttribute('src', data[index].image.desktop);
@@ -65,16 +82,20 @@
          let cardtext = document.createElement('p');
          cardtext.className = "card-text";
          cardtext.innerHTML = data[index].category;
+         cardtext.style = 'color:hsl(12, 20%, 44%);'
          let cardtitle = document.createElement('h5');
          cardtitle.className = "card-title";
          cardtitle.innerHTML = data[index].name;
+         cardtitle.style = "color : hsl(14, 65%, 9%);"
          let dPrice = document.createElement('h6');
          dPrice.className = "card-price";
          dPrice.innerHTML = "$" + data[index].price.toFixed(2);
+         dPrice.style = "color: hsl(13, 70%, 59%);";
          let cardlink = document.createElement('a');
          cardlink.className = "btn btn-primary";
+         cardlink.style = "background-color: hsl(20, 50%, 98%);color: hsl(13, 70%, 59%);border-color:hsl(13, 70%, 59%);";
          cardlink.setAttribute('href', "#");
-         cardlink.innerHTML = "Go somewhere";
+         cardlink.innerHTML = "Add to cart";
          prodlst.appendChild(link);
          // list.appendChild(link);
          link.appendChild(card);

@@ -9,12 +9,15 @@
 </script>
 
 <template>
+<div>
+
   <navbar/>
   <HomePageComponent/>
   <ProductDetailsComponent/>
   <contactComponent/>
   <NotFoundComponent/>
   <router-view></router-view>
+</div>
 </template>
 
 <style scoped></style>
